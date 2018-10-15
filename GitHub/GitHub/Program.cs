@@ -10,7 +10,11 @@ namespace GitHub
             //fizzBuzz.Execute();
 
             NummerSwap nummerSwap = new NummerSwap();
-            nummerSwap.Swap();
+            //nummerSwap.Swap();
+
+            StraatHuis straatHuis = new StraatHuis();
+            straatHuis.Straat();
+
         }
     }
 }
