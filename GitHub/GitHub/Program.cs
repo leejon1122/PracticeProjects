@@ -13,7 +13,7 @@ namespace GitHub
             //nummerSwap.Swap();
 
             StraatHuis straatHuis = new StraatHuis();
-            straatHuis.Straat();
+            //straatHuis.Straat();
 
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class StraatHuis
 {
-    public void Straat()
+    public void Straat(string v)
     {
         Huis mynHuis = new Huis();
         Huis jouwHuis = new Huis();
@@ -33,7 +33,7 @@ public class StraatHuis
     }
 }
 
-class Huis
+public class Huis
 {
     public int HuisNummer { get; set; }
     public int Deuren { get; set; }
@@ -41,7 +41,7 @@ class Huis
 
 }
 
-class Straat
+public class Straat
 {
     public List<Huis> Huizen { get; set; }
 
@@ -58,7 +58,9 @@ class Straat
                 Console.WriteLine(huisNummersGehad);
             }
             else
+            {
                 aantalGeteld = aantalGeteld + huis.Ramen;
+            }
 
         }
         return aantalGeteld;
