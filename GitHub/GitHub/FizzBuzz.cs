@@ -12,33 +12,40 @@ namespace GitHub
             for (int i = 1; i < 40; i++)
             {
                 nummers.Add(i);
-                if (i % 3 == 0 && i % 5 == 0)
-                {
-                    Console.WriteLine("FizzBuzz");
-                }
-                else
-                {
-                    if (i % 3 == 0)
-                    {
-                        Console.WriteLine("Fizz");
-                    }
-                    else
-                    {
-                        if (i % 5 == 0)
-                        {
-                            Console.WriteLine("Buzz");
-                        }
-                        else
-                        {
-                            Console.WriteLine(i);
-                        }
-                    }
-                }
+                string a = Fizzy(i);
+                Console.WriteLine(a);
             }
 
             Console.WriteLine(nummers.Count);
 
             Console.ReadLine();
         }
+
+        public string Fizzy(int i)
+        {
+            if (i % 3 == 0 && i % 5 == 0)
+            {
+                return "FizzBuzz";
+            }
+            else
+            {
+                if (i % 3 == 0)
+                {
+                    return "Fizz";
+                }
+                else
+                {
+                    if (i % 5 == 0)
+                    {
+                        return "Buzz";
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+        }
+
     }
 }
