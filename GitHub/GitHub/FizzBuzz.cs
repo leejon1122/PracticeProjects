@@ -6,6 +6,9 @@ namespace GitHub
 {
     public class FizzBuzz
     {
+        public const string fizz = "Fizz";
+        public const string buzz = "Buzz";
+        public const string fizzbuzz = "FizzBizz";
         public void Execute()
         {
             List<int> nummers = new List<int>();
@@ -46,6 +49,5 @@ namespace GitHub
                 }
             }
         }
-
     }
 }
