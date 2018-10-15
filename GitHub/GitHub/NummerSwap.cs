@@ -4,13 +4,23 @@ using System.Text;
 
 namespace GitHub
 {
-    class NummerSwap
+    public class NummerSwap
     {
         public void Swap()
         {
             Console.Write("Voernummers in: ");
             string nummers = Console.ReadLine();
+            string result = SwapNummer(nummers);
 
+            result += " ";
+
+            Console.WriteLine("Results: " + result);
+
+            Console.ReadLine();
+        }
+
+        public string SwapNummer(string nummers)
+        {
             char[] nummersArray = nummers.ToCharArray();
             Array.Reverse(nummersArray);
 
@@ -20,12 +30,7 @@ namespace GitHub
             {
                 result += item;
             }
-
-            result += " ";
-
-            Console.WriteLine("Results: " + result);
-
-            Console.ReadLine();
+            return result;
         }
     }
 }
