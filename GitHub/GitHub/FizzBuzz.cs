@@ -8,7 +8,7 @@ namespace GitHub
     {
         public const string fizz = "Fizz";
         public const string buzz = "Buzz";
-        public const string fizzbuzz = "FizzBizz";
+        public const string fizzbuzz = "FizzBuzz";
         public void Execute()
         {
             List<int> nummers = new List<int>();
