@@ -8,7 +8,8 @@ namespace GitHub
     {
         public const string fizz = "Fizz";
         public const string buzz = "Buzz";
-        public const string fizzbuzz = "FizzBizz";
+        public const string fizzbuzz = "FizzBuzz";
+        
         public void Execute()
         {
             List<int> nummers = new List<int>();
@@ -17,6 +18,7 @@ namespace GitHub
                 nummers.Add(i);
                 string a = Fizzy(i);
                 Console.WriteLine(a);
+                //Console.WriteLine(nummers.Count);
             }
 
             Console.WriteLine(nummers.Count);
@@ -28,19 +30,19 @@ namespace GitHub
         {
             if (i % 3 == 0 && i % 5 == 0)
             {
-                return "FizzBuzz";
+                return fizzbuzz;
             }
             else
             {
                 if (i % 3 == 0)
                 {
-                    return "Fizz";
+                    return fizz;
                 }
                 else
                 {
                     if (i % 5 == 0)
                     {
-                        return "Buzz";
+                        return buzz;
                     }
                     else
                     {
