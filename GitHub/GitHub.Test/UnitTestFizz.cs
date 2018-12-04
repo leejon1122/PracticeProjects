@@ -12,7 +12,7 @@ namespace GitHub.Test
             
             FizzBuzz fizzbuzz = new FizzBuzz();
             string a = fizzbuzz.Fizzy(3);
-            Assert.Equal("Fizz", a);
+            Assert.Equal(FizzBuzz.fizz, a);
 
             
         }
@@ -22,7 +22,7 @@ namespace GitHub.Test
 
             FizzBuzz fizzbuzz = new FizzBuzz();
             string a = fizzbuzz.Fizzy(5);
-            Assert.Equal("Buzz", a);
+            Assert.Equal(FizzBuzz.buzz, a);
 
 
         }
@@ -32,7 +32,7 @@ namespace GitHub.Test
 
             FizzBuzz fizzbuzz = new FizzBuzz();
             string a = fizzbuzz.Fizzy(15);
-            Assert.Equal("FizzBuzz", a);
+            Assert.Equal(FizzBuzz.fizzbuzz, a);
 
 
         }
