@@ -7,7 +7,9 @@ namespace GitHub
         static void Main(string[] args)
         {
             FizzBuzz fizzBuzz = new FizzBuzz();
-            //fizzBuzz.Execute();
+            fizzBuzz.Execute();
+
+            //LOIoefening;
 
             NummerSwap nummerSwap = new NummerSwap();
             //nummerSwap.Swap();
@@ -15,10 +17,7 @@ namespace GitHub
             StraatHuis straatHuis = new StraatHuis();
             //straatHuis.Straat();
 
-            Kerstboom kerstboom = new Kerstboom();
-            kerstboom.Boom();
-
-
+            
         }
     }
 }

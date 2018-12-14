@@ -9,6 +9,7 @@ namespace GitHub
         public const string fizz = "Fizz";
         public const string buzz = "Buzz";
         public const string fizzbuzz = "FizzBuzz";
+        
         public void Execute()
         {
             List<int> nummers = new List<int>();
@@ -16,14 +17,8 @@ namespace GitHub
             {
                 nummers.Add(i);
                 string a = Fizzy(i);
-                if (a == string.Empty)
-                {
-                    Console.WriteLine(i);
-                }
-                else
-                {
-                    Console.WriteLine(a);
-                }
+                Console.WriteLine(a);
+                //Console.WriteLine(nummers.Count);
             }
 
             Console.WriteLine(nummers.Count);
