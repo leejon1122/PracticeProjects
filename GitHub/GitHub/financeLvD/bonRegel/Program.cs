@@ -34,7 +34,6 @@ class Program
                 regel.Bedrag = bedrag;
                 regel.Product = product;
                 receipt.Add(regel);
-
             }
         }
         Console.ReadLine();

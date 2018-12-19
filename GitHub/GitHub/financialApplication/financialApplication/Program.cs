@@ -1,77 +1,161 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace financialApplication
+namespace bonRegelClass
 {
     class Program
     {
         static void Main(string[] args)
         {
-
-
-
+            var receipt = new List<Bonregel>();
             string product = null;
-            int deposit;
-            int inkomen = 1000;
-            int amount;
+            IList<int> deposits = new List<int>();
+            int income = 2000;
+            int saldo = income;
 
-            IList<int> amounts = new List<int>();
-            IList<int> depositList= new List<int>();
-            List<string> products = new List<string>();
 
-            Console.WriteLine("Je hebt " + inkomen + "EURO te besteden.");
+            Console.WriteLine("Je hebt " + income + "EURO te besteden");
 
             while (product != "x")
             {
-                Console.WriteLine("Geeft het product op: ");
-                product = Console.ReadLine();
-                //products.Add(product);
 
-                if (product == "x")
+                Console.WriteLine("Wat wil je doen?( product/som/x/deposit)");
+                product = Console.ReadLine();
+
+                if (product == "product")
+                {
+                    ToevoegenProduct(receipt);
+                    continue;
+                }
+                else if (product == "x")
                 {
                     Console.WriteLine("Stop");
                 }
-                else if (product == "dep")
+                else if (product == "deposit")
                 {
-                    Console.WriteLine("Geef het bedrag op dat je wil storten: ");
-                    deposit = Convert.ToInt32(Console.ReadLine());
-                    depositList.Add(deposit);
+                    Storting(deposits);
                 }
                 else if (product == "som")
                 {
-                    int totalDeposit = depositList.Sum();
-                    int totalAmount = amounts.Sum();
-                    int saldo = inkomen - totalAmount + totalDeposit;
+                    //opsomming en schrijft deze weg naar een .txt file
+                    Opsomming(receipt, deposits, saldo);
+                }
+                else if (product == "exportsom")
+                {
+                    string documentPath =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
+                    {
+                        int totalDeposit;
+                        foreach (var regel in receipt)
+                        {
+                            outputFile.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
+                        }
+                        var groupedProductList = receipt.GroupBy(item => item.Product);
+                        foreach (var receiptGroup in groupedProductList)
+                        {
+                            outputFile.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
+                        }
 
-                    //string prodList = string.Join(",", products.ToArray());
+                        totalDeposit = deposits.Sum();
+                        int totalExpense = receipt.Sum(item => item.Bedrag);
+                        int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
+                        int totalSaldo = saldo + totalDeposit - totalExpense;
 
-                    Console.Write("Producten: " + string.Join(",", products));
-                    Console.WriteLine(string.Join(",", products));
-                    Console.Write("Uitgaven: ");
-                    Console.WriteLine(string.Join(",", amounts));
-
-
-                    Console.WriteLine("Totaal uitgaven: " + totalAmount);
-                    Console.WriteLine("Totaal stortingen: " + totalDeposit);
-                    Console.WriteLine("Saldo: " + saldo );
-                    
+                        outputFile.WriteLine("Totaal stortingen: " + totalDeposit);
+                        outputFile.WriteLine("Rest saldo: " + totalSaldo);
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Geeft het bedrag op: ");
-                    amount = Convert.ToInt32(Console.ReadLine());
-
-                    amounts.Add(amount);
-                    products.Add(product);
-                    
+                    Console.WriteLine("Ongeldige keuze");
                 }
+                Console.WriteLine("-------------------");
             }
-            Console.WriteLine("--------------------");
-            
+        }
+
+        private static void Opsomming(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        {
+
+            int totalDeposit;
+
+            foreach (var regel in receipt)
+            {
+                Console.Write("Product en bedrag: ");
+                Console.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
+            }
+            var groupedProductList = receipt.GroupBy(item => item.Product);
+            foreach (var receiptGroup in groupedProductList)
+            {
+                Console.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
+            }
+
+            totalDeposit = deposits.Sum();
+            int totalExpense = receipt.Sum(item => item.Bedrag);
+            int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
+            int totalSaldo = saldo + totalDeposit - totalExpense;
+
+            Console.WriteLine("Totaal stortingen: " + totalDeposit);
+            Console.WriteLine("Rest saldo: " + totalSaldo);
+
+            //Schrijft naar .txt file
+            //string documentPath =
+            //Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
+            //{
+            //    foreach (var regel in receipt)
+            //    {
+            //        outputFile.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
+
+            //    }
+            //    foreach (var receiptGroup in groupedProductList)
+
+            //    {
+            //        outputFile.WriteLine($"product: {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
+            //    }
+            //    outputFile.WriteLine("Totaal stortingen: " + totalDeposit);
+            //    outputFile.WriteLine("Rest saldo: " + totalSaldo);
+            //}
+            //return;
+        }
+
+
+
+        private static void Storting(IList<int> deposits)
+        {
+            Console.WriteLine("Hoeveel wil je storten: ");
+            int deposit = Convert.ToInt32(Console.ReadLine());
+            deposits.Add(deposit);
+        }
+
+        private static void ToevoegenProduct(List<Bonregel> receipt)
+        {
+            string product;
+            Console.WriteLine("Geeft product op: ");
+            product = Console.ReadLine();
+
+            Console.WriteLine("Geef bedrag op: ");
+            int bedrag = Convert.ToInt32(Console.ReadLine());
+            var regel = new Bonregel();
+
+            regel.Bedrag = bedrag;
+            regel.Product = product;
+            receipt.Add(regel);
         }
     }
-}
+
+    class Bonregel
+    {
+        public string Product { get; set; }
+        public int Bedrag { get; set; }
+    }
+//    class Totaalregel
+//    {
+//        public string Naam { get; set; }
+//        public int Bedrag { get; set; }
+//    }
+//}

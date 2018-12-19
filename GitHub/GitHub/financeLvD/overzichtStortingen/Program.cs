@@ -58,7 +58,9 @@ namespace overzichtStortingen
                 {
                     foreach (var regel in receipt)
                     {
+                        int totaalBedrag = receipt.Sum();
                         Console.WriteLine("test: " + "{0} {1}", regel.Product, regel.Bedrag);
+                        
                     }
                 }
 
@@ -75,9 +77,6 @@ namespace overzichtStortingen
                     //saldo = saldo + storting;
 
                     Console.WriteLine(saldo);
-
-                    
-                    
                 }
                 else
                 {
