@@ -69,6 +69,10 @@ namespace overzichtStortingen
 
                     Console.WriteLine(saldo);
                 }
+                else if (product == "export")
+                {
+
+                }
                 else
                 {
                     Console.WriteLine("Geef een bedrag: ");

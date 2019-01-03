@@ -60,7 +60,6 @@ namespace overzichtStortingen
                     {
                         int totaalBedrag = receipt.Sum();
                         Console.WriteLine("test: " + "{0} {1}", regel.Product, regel.Bedrag);
-                        
                     }
                 }
 

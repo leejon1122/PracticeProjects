@@ -44,30 +44,7 @@ namespace bonRegelClass
                 }
                 else if (product == "exportsom")
                 {
-                    string documentPath =
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
-                    {
-                        int totalDeposit;
-                        foreach (var regel in receipt)
-                        {
-                            outputFile.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
-                        }
-                        var groupedProductList = receipt.GroupBy(item => item.Product);
-                        foreach (var receiptGroup in groupedProductList)
-                        {
-                            outputFile.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
-                        }
-
-                        totalDeposit = deposits.Sum();
-                        int totalExpense = receipt.Sum(item => item.Bedrag);
-                        int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
-                        int totalSaldo = saldo + totalDeposit - totalExpense;
-
-                        outputFile.WriteLine("Totaal stortingen: " + totalDeposit);
-                        outputFile.WriteLine("Rest saldo: " + totalSaldo);
-                    }
+                    
                 }
                 else
                 {
@@ -153,9 +130,9 @@ namespace bonRegelClass
         public string Product { get; set; }
         public int Bedrag { get; set; }
     }
-//    class Totaalregel
-//    {
-//        public string Naam { get; set; }
-//        public int Bedrag { get; set; }
-//    }
-//}
+    class Totaalregel
+    {
+        public string Naam { get; set; }
+        public int Bedrag { get; set; }
+    }
+}

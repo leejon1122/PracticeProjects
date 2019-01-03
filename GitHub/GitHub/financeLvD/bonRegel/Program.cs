@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 class Program
 
@@ -8,6 +10,7 @@ class Program
     {
         var receipt = new List<Bonregel>();
         string product = null;
+        int bedrag;
 
         while (product != "x")
         {
@@ -25,10 +28,17 @@ class Program
                     Console.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
                 }
             }
+            else if (product == "export")
+            {
+                var exportregel = new Exportbon();
+
+                exportregel.Exportbedrag = product;
+                exportregel.Exportprod;
+            }
             else
             {
                 Console.WriteLine("Wat voor bedrag: ");
-                int bedrag = Convert.ToInt32(Console.ReadLine());
+                bedrag = Convert.ToInt32(Console.ReadLine());
                 var regel = new Bonregel();
 
                 regel.Bedrag = bedrag;
@@ -46,3 +56,10 @@ class Bonregel
 
     public int Bedrag { get; set; }
 }
+class Exportbon
+{
+    public string Exportprod { get; set; }
+    public int Exportbedrag { get; set; }
+}
+
+

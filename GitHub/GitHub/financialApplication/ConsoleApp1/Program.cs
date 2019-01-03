@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace bonRegelClass
 {
@@ -19,17 +20,17 @@ namespace bonRegelClass
 
             while (actie != "x")
             {
-                Console.WriteLine("Wat wil je doen?((p)roduct/(s)om/(x)/(d)eposit/(e)xportsom)");
+                Console.WriteLine("Wat wil je doen?(product/som/x/deposit/exportsom/read)");
                 actie = Console.ReadLine();
 
                 switch (actie)
                 {
-                    case "p":
+                    case "product":
                         {
                             ToevoegenProduct(receipt);
                         }
                         break;
-                    case "r":
+                    case "read":
                         {
                             string teksttest;
                             using (var streamReader = new StreamReader(@"C:\Users\dvle\Documents\test.txt"))
@@ -40,8 +41,7 @@ namespace bonRegelClass
 
                             foreach (string fileregel in File.ReadLines(@"C:\Users\dvle\Documents\test.txt"))
                             {
-                                Console.WriteLine("{0}", fileregel);
-                                Console.ReadLine();
+                                Console.WriteLine($"{fileregel}");
                             }
                         }
                         break;
@@ -50,17 +50,17 @@ namespace bonRegelClass
                             Console.WriteLine("Stop");
                         }
                         break;
-                    case "d":
+                    case "deposit":
                         {
                             Storting(deposits);
                         }
                         break;
-                    case "s":
+                    case "som":
                         {
                             Opsomming(receipt, deposits, saldo);
                         }
                         break;
-                    case "e":
+                    case "exportsom":
                         {
                             ExporstSom(receipt, deposits, saldo);
                         }
@@ -73,47 +73,32 @@ namespace bonRegelClass
             }
         }
 
-        private static void ExporstSom(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        private static void Sommeren(List<Bonregel> receipt, IList<int> deposits, int saldo)
         {
-            string documentPath =
-    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            int totalDeposit;
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
-            {
-                int totalDeposit;
-                foreach (var regel in receipt)
-                {
-                    outputFile.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
-                }
-                var groupedProductList = receipt.GroupBy(item => item.Product);
-                foreach (var receiptGroup in groupedProductList)
-                {
-                    outputFile.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
-                }
+            var groupedProductList = receipt.GroupBy(item => item.Product);
 
-                totalDeposit = deposits.Sum();
-                int totalExpense = receipt.Sum(item => item.Bedrag);
-                int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
-                int totalSaldo = saldo + totalDeposit - totalExpense;
-
-                outputFile.WriteLine("Totaal stortingen: " + totalDeposit);
-                outputFile.WriteLine("Rest saldo: " + totalSaldo);
-            }
+            totalDeposit = deposits.Sum();
+            int totalExpense = receipt.Sum(item => item.Bedrag);
+            int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
+            int totalSaldo = saldo + totalDeposit - totalExpense;
         }
 
-        private static void Opsomming(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        private static string GenerateOutput(List<Bonregel> receipt, IList<int> deposits, int saldo)
         {
+            StringBuilder builder = new StringBuilder();
             int totalDeposit;
 
             foreach (var regel in receipt)
             {
-                Console.Write("Product en bedrag: ");
-                Console.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
+                builder.Append("Product en bedrag: ");
+                builder.AppendLine($"{regel.Product}, {regel.Bedrag}");
             }
             var groupedProductList = receipt.GroupBy(item => item.Product);
             foreach (var receiptGroup in groupedProductList)
             {
-                Console.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
+                builder.AppendLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
             }
 
             totalDeposit = deposits.Sum();
@@ -121,8 +106,29 @@ namespace bonRegelClass
             int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
             int totalSaldo = saldo + totalDeposit - totalExpense;
 
-            Console.WriteLine("Totaal stortingen: " + totalDeposit);
-            Console.WriteLine("Rest saldo: " + totalSaldo);
+            builder.AppendLine("Totaal stortingen: " + totalDeposit);
+            builder.AppendLine("Rest saldo: " + totalSaldo);
+
+            return builder.ToString();
+        }
+
+        private static void ExporstSom(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        {
+            var tekst = GenerateOutput(receipt, deposits, saldo);
+
+            string documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
+            {
+                outputFile.Write(tekst);
+            }
+        }
+
+        private static void Opsomming(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        {
+            var tekst = GenerateOutput(receipt, deposits, saldo);
+            Console.WriteLine(tekst);
         }
 
         private static void Storting(IList<int> deposits)

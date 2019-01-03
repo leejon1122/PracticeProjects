@@ -11,27 +11,14 @@ namespace oefeningenDecember
         static void Main(string[] args)
         {
 
-            int num1 = 0;
-            int num2 = 2;
-
+            int getal;
             Console.WriteLine("Geef getal op: ");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            getal = Convert.ToInt32(Console.ReadLine());
 
-            while (num1 != 0)
+            for (int j = 0; j < getal; j++)
             {
-                
-
-                if (num1 % num2 == 0)
-                {
-                    Console.WriteLine("Even");
-                }
-                else
-                {
-                    Console.WriteLine("Oneven");
-                }
-                Console.ReadLine();
+                Console.Write(" " + getal);
             }
-            
         }
 
     }
