@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38A9DAA3-CE58-4751-BB43-7B32BBB8BBE1}</ProjectGuid>
+    <ProjectGuid>{729B950A-ABC6-4F78-B18C-34BFE3F91139}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>bonRegelClass</RootNamespace>
-    <AssemblyName>bonRegelClass</AssemblyName>
+    <RootNamespace>PrinterClass</RootNamespace>
+    <AssemblyName>PrinterClass</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProduct.cs" />
-    <Compile Include="DepositClass.cs" />
-    <Compile Include="ExportSom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchermPrinter.cs" />
     <Compile Include="Sommeer.cs" />
   </ItemGroup>
   <ItemGroup>

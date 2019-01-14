@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintClass", "PrintClass\PrintClass.csproj", "{5921A6A7-9C24-4849-95FB-5769748C6465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterClass", "PrinterClass\PrinterClass.csproj", "{729B950A-ABC6-4F78-B18C-34BFE3F91139}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5921A6A7-9C24-4849-95FB-5769748C6465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5921A6A7-9C24-4849-95FB-5769748C6465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5921A6A7-9C24-4849-95FB-5769748C6465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5921A6A7-9C24-4849-95FB-5769748C6465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729B950A-ABC6-4F78-B18C-34BFE3F91139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729B950A-ABC6-4F78-B18C-34BFE3F91139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729B950A-ABC6-4F78-B18C-34BFE3F91139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729B950A-ABC6-4F78-B18C-34BFE3F91139}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBEA5EE9-6263-4D24-A0BA-34CA031FCED4}
+	EndGlobalSection
+EndGlobal

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace bonRegelClass
+namespace PrintClass
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //var test = new ExportSom();
-            //test.OpsommingProduct();
-
-
             var receipt = new List<Bonregel>();
             string actie = null;
             IList<int> deposits = new List<int>();
@@ -30,9 +28,7 @@ namespace bonRegelClass
                 {
                     case "p":
                         {
-                            AddProduct add = new AddProduct();
-                            add.Addprod();
-                            //ToevoegenProduct(receipt);
+                            ToevoegenProduct(receipt);
                         }
                         break;
                     case "r":
@@ -58,19 +54,12 @@ namespace bonRegelClass
                         break;
                     case "d":
                         {
-                            //Storting(deposits);
-                            DepositClass dep = new DepositClass();
-                            dep.Stortingen();
-                            
+                            Storting(deposits);
                         }
                         break;
                     case "s":
                         {
-                            Sommeer som = new Sommeer();
-                            som.Sum();
-
-                            //test.OpsommingProduct();
-                            //Opsomming(receipt, deposits, saldo);
+                            Opsomming(receipt, deposits, saldo);
                         }
                         break;
                     case "e":
@@ -86,7 +75,8 @@ namespace bonRegelClass
             }
         }
 
-        public static void ExporstSom(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        private static void ExporstSom(List<Bonregel> receipt, IList<int> deposits, int saldo)
+
         {
             string documentPath =
     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -114,38 +104,38 @@ namespace bonRegelClass
             }
         }
 
-        //public static void Opsomming(List<Bonregel> receipt, IList<int> deposits, int saldo)
-        //{
-        //    int totalDeposit;
+        private static void Opsomming(List<Bonregel> receipt, IList<int> deposits, int saldo)
+        {
+            int totalDeposit;
 
-        //    foreach (var regel in receipt)
-        //    {
-        //        Console.Write("Product en bedrag: ");
-        //        Console.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
-        //    }
-        //    var groupedProductList = receipt.GroupBy(item => item.Product);
-        //    foreach (var receiptGroup in groupedProductList)
-        //    {
-        //        Console.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
-        //    }
+            foreach (var regel in receipt)
+            {
+                Console.Write("Product en bedrag: ");
+                Console.WriteLine("{0} {1}", regel.Product, regel.Bedrag);
+            }
+            var groupedProductList = receipt.GroupBy(item => item.Product);
+            foreach (var receiptGroup in groupedProductList)
+            {
+                Console.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
+            }
 
-        //    totalDeposit = deposits.Sum();
-        //    int totalExpense = receipt.Sum(item => item.Bedrag);
-        //    int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
-        //    int totalSaldo = saldo + totalDeposit - totalExpense;
+            totalDeposit = deposits.Sum();
+            int totalExpense = receipt.Sum(item => item.Bedrag);
+            int totaalProductGroep = receipt.Where(item => item.Product == item.Product).Sum(item => item.Bedrag);
+            int totalSaldo = saldo + totalDeposit - totalExpense;
 
-        //    Console.WriteLine("Totaal stortingen: " + totalDeposit);
-        //    Console.WriteLine("Rest saldo: " + totalSaldo);
-        //}
+            Console.WriteLine("Totaal stortingen: " + totalDeposit);
+            Console.WriteLine("Rest saldo: " + totalSaldo);
+        }
 
-        //public static void Storting(IList<int> deposits)
-        //{
-        //    Console.WriteLine("Hoeveel wil je storten: ");
-        //    int deposit = Convert.ToInt32(Console.ReadLine());
-        //    deposits.Add(deposit);
-        //}
+        private static void Storting(IList<int> deposits)
+        {
+            Console.WriteLine("Hoeveel wil je storten: ");
+            int deposit = Convert.ToInt32(Console.ReadLine());
+            deposits.Add(deposit);
+        }
 
-        public static void ToevoegenProduct(List<Bonregel> receipt)
+        private static void ToevoegenProduct(List<Bonregel> receipt)
         {
             string product;
             Console.WriteLine("Geeft product op: ");
@@ -162,14 +152,9 @@ namespace bonRegelClass
         }
     }
 
-    public class Bonregel
+    class Bonregel
     {
         public string Product { get; set; }
         public int Bedrag { get; set; }
-    }
-
-    class Exporter
-    {
-
     }
 }

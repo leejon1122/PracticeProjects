@@ -10,15 +10,29 @@ namespace wDrie
     {
         static void Main(string[] args)
         {
+            Car car;
 
-            for (int i = 0; i < 99; i++)
-            {
-                if (i % 2 != 0)
-                {
-                    Console.WriteLine(i);
-                }
-            }
+            car = new Car("Red");
+            Console.WriteLine(car.Describe());
 
+            car = new Car("Green");
+            Console.WriteLine(car.Describe());
+
+            Console.ReadLine();
+        }
+    }
+    class Car
+    {
+        private string color;
+
+        public Car (string color)
+        {
+            this.color = color;
+        }
+
+        public string Describe()
+        {
+            return "This car is " + color;
         }
     }
 }
