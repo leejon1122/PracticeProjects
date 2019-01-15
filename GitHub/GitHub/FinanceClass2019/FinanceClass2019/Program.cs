@@ -33,7 +33,17 @@ namespace FinanceClass2019
                         break;
                     case "x":
                         {
-                            Console.WriteLine("Stop");
+                            StopApplicatie stop = new StopApplicatie();
+                            var quit = stop.Stop();
+
+                        }
+                        break;
+                    case "r":
+                        {
+                            string text = File.ReadAllText(@"C:\Users\dvle\Documents\test.txt");
+
+                            Console.WriteLine("text " + text);
+                            Console.WriteLine("Totaal stortingen inclusief ingeladen text");
                         }
                         break;
                     case "d":
