@@ -9,10 +9,10 @@ namespace FinanceClass2019
 {
     public class DepositClass
     {
-        public int Stortingen(IList<int> deposits)
+        public decimal Stortingen(IList<decimal> deposits)
         {
             Console.WriteLine("Hoeveel wil je storten: ");
-            int deposit = Convert.ToInt32(Console.ReadLine());
+            decimal deposit = decimal.Parse(Console.ReadLine());
             deposits.Add(deposit);
             return deposits.Sum();
         }

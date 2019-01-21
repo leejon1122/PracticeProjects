@@ -46,9 +46,10 @@ namespace bonRegelClass
 
                             foreach (string fileregel in File.ReadLines(@"C:\Users\dvle\Documents\test.txt"))
                             {
-                                Console.WriteLine("{0}", fileregel);
+                                //Console.WriteLine("{0}", fileregel);
                                 Console.ReadLine();
                             }
+                            Console.WriteLine("{0}", fileregel);
                         }
                         break;
                     case "x":

@@ -12,12 +12,13 @@ namespace FinanceClass2019
             product = Console.ReadLine();
 
             Console.WriteLine("Geef bedrag op: ");
-            int bedrag = Convert.ToInt32(Console.ReadLine());
+            decimal bedrag = decimal.Parse(Console.ReadLine());
             var regel = new Bonregel();
 
             regel.Bedrag = bedrag;
             regel.Product = product;
             receipt.Add(regel);
+
 
             return product + bedrag;
         }

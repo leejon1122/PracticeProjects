@@ -12,9 +12,9 @@ namespace FinanceClass2019
         {
             var receipt = new List<Bonregel>();
             string actie = null;
-            IList<int> deposits = new List<int>();
-            int income = 2000;
-            int saldo = income;
+            IList<decimal> deposits = new List<decimal>();
+            decimal income = 2000;
+            decimal saldo = income;
 
             Console.WriteLine("Je hebt " + income + "EURO te besteden");
 
@@ -44,26 +44,26 @@ namespace FinanceClass2019
 
                             Console.WriteLine("text " + text);
                             Console.WriteLine("Totaal stortingen inclusief ingeladen text");
-                        }
                         break;
+                        }
                     case "d":
                         {
 
                             DepositClass dep = new DepositClass();
-                            int depSum = dep.Stortingen(deposits);
+                            decimal depSum = dep.Stortingen(deposits);
                         }
                         break;
                     case "s":
                         {
 
                             Sommeer som = new Sommeer();
-                            int bonSom = som.Sum(deposits,receipt,saldo);
+                            decimal bonSom = som.Sum(deposits,receipt,saldo);
                         }
                         break;
                     case "e":
                         {
                             ExportSom export = new ExportSom();
-                            int exporter = export.Exporteer(receipt,deposits,saldo);
+                            decimal exporter = export.Exporteer(receipt,deposits,saldo);
 
                         }
                         break;
@@ -79,6 +79,6 @@ namespace FinanceClass2019
     public class Bonregel
     {
         public string Product { get; set; }
-        public int Bedrag { get; set; }
+        public decimal Bedrag { get; set; }
     }
 }
