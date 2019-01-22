@@ -23,6 +23,7 @@ namespace FinanceClass2019
                 Console.WriteLine("Wat wil je doen?((p)roduct/(s)om/(x)/(d)eposit/(e)xportsom)");
                 actie = Console.ReadLine();
 
+
                 switch (actie)
                 {
                     case "p":
@@ -38,13 +39,16 @@ namespace FinanceClass2019
 
                         }
                         break;
-                    case "r":
+                    case "t":
                         {
-                            string text = File.ReadAllText(@"C:\Users\dvle\Documents\test.txt");
+                            Parser lees = new Parser();
+                            var lezen = lees.Parse(deposits,receipt,saldo);
+                            //string filePath = File.ReadAllText(@"C:\Users\dvle\Documents\financeSum.txt");
+                            
 
-                            Console.WriteLine("text " + text);
-                            Console.WriteLine("Totaal stortingen inclusief ingeladen text");
-                        break;
+                            //Console.WriteLine("text " + text);
+                            //Console.WriteLine("Totaal stortingen inclusief ingeladen text");
+                            break;
                         }
                     case "d":
                         {
@@ -65,6 +69,12 @@ namespace FinanceClass2019
                             ExportSom export = new ExportSom();
                             decimal exporter = export.Exporteer(receipt,deposits,saldo);
 
+                        }
+                        break;
+                    case "r":
+                        {
+                            ReturnProd ret = new ReturnProd();
+                            var retourtje = ret.Retrouneer(receipt);
                         }
                         break;
                     default:
