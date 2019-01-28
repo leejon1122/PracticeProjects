@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace FinanceClass2019
 {
@@ -41,15 +40,10 @@ namespace FinanceClass2019
                         break;
                     case "t":
                         {
-                            Parser lees = new Parser();
-                            var lezen = lees.Parse(deposits,receipt,saldo);
-                            //string filePath = File.ReadAllText(@"C:\Users\dvle\Documents\financeSum.txt");
                             
-
-                            //Console.WriteLine("text " + text);
-                            //Console.WriteLine("Totaal stortingen inclusief ingeladen text");
-                            break;
                         }
+                        break;
+
                     case "d":
                         {
 
@@ -61,13 +55,13 @@ namespace FinanceClass2019
                         {
 
                             Sommeer som = new Sommeer();
-                            decimal bonSom = som.Sum(deposits,receipt,saldo);
+                            decimal bonSom = som.Sum(deposits, receipt, saldo);
                         }
                         break;
                     case "e":
                         {
                             ExportSom export = new ExportSom();
-                            decimal exporter = export.Exporteer(receipt,deposits,saldo);
+                            decimal exporter = export.Exporteer(receipt, deposits, saldo);
 
                         }
                         break;
