@@ -13,7 +13,7 @@ namespace FinanceClass2019
             string documentPath =
     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.csv")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(documentPath, "financeSum.txt")))
             {
                 decimal totalDeposit;
                 foreach (var regel in receipt)
@@ -32,7 +32,6 @@ namespace FinanceClass2019
                 outputFile.WriteLine("Product            | Aantal |   Bedrag");
                 outputFile.WriteLine("---------------------------------------");
 
-
                 var groupedProductList = receipt.GroupBy(item => item.Product);
                 foreach (var receiptGroup in groupedProductList)
                 {
@@ -48,6 +47,7 @@ namespace FinanceClass2019
                     //Console.WriteLine($"totaal BTW per product: {btwCalc}");
                     totaalBtw += btwCalc;
                 }
+                //_Attribute.Invoke(uint, System.Guid, uint, short, System.IntPtr, System.IntPtr, System.IntPtr, System.IntPtr)
 
                 decimal totaalBtwKorter = 0;
                 receipt.Select(bonregel => totaalBtwKorter += Math.Round(bonregel.Bedrag * 0.21m    , 2));
@@ -75,6 +75,7 @@ namespace FinanceClass2019
                     
                 return totalSaldo;
             }
+
         }
     }
 }

@@ -1,30 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FinanceClass2019
 {
     public class Parser
     {
-        public string Parse(IList<decimal> deposits, List<Bonregel> receipt, decimal saldo)
+        public List<Bonregel> Parse(string filePath)
         {
-            var regel = new Bonregel();
 
-            using (var reader = new StreamReader(@"C:\Users\dvle\Documents\input.txt"))
+
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            List<Bonregel> parseBon = new List<Bonregel>();
+
+            foreach (var line in lines)
             {
+                string[] entries = line.Split(',');
+                Bonregel newLine = new Bonregel();
+                newLine.Product = entries[0];
+                newLine.Bedrag = decimal.Parse(entries[1]);
 
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    var temp = line.Split(" ");
-                    receipt.Add(new Bonregel
-                    {
-                        Bedrag = decimal.Parse(temp[0]),
-                        Product = temp[1],
-
-                    });
-                }
-                return line;
+                parseBon.Add(newLine);
             }
+            return parseBon;
         }
     }
 }

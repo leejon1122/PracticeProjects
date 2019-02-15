@@ -31,12 +31,9 @@ namespace FinanceClass2019
             var groupedProductList = receipt.GroupBy(item => item.Product);
             foreach (var receiptGroup in groupedProductList)
             {
-
                 //Console.WriteLine($"product : {receiptGroup.Key} aantal: {receiptGroup.Count()} totaalbedrag: {receiptGroup.Sum(item => item.Bedrag)}");
                 //Console.WriteLine("");
                 Console.WriteLine(string.Format("{0,-19}|   {1,-4} | {2,8:C2}", receiptGroup.Key, receiptGroup.Count(), receiptGroup.Sum(item => item.Bedrag)));
-
-
             }
 
             decimal totaalBtw = 0;
@@ -50,7 +47,6 @@ namespace FinanceClass2019
             //Nog korter opschrijven. ter info
             decimal totaalBtwKorter = 0;
             receipt.Select(bonregel => totaalBtwKorter += Math.Round(bonregel.Bedrag * 0.21m, 2));
-
 
             totalDeposit = deposits.Sum();
             decimal totalExpense = receipt.Sum(item => item.Bedrag);

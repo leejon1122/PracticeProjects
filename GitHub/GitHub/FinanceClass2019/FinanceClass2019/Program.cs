@@ -40,7 +40,9 @@ namespace FinanceClass2019
                         break;
                     case "t":
                         {
-                            
+                            Parser read = new Parser();
+                            receipt = read.Parse(@"C:\Users\dvle\Documents\input.txt");
+
                         }
                         break;
 

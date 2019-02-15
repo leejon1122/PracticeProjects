@@ -19,7 +19,7 @@ namespace bonRegelClass
             int income = 2000;
             int saldo = income;
 
-            Console.WriteLine("Je hebt " + income + "EURO te besteden");
+            Console.WriteLine("Je hebt " + income + "EURO te bestedenn");
 
             while (actie != "x")
             {
@@ -49,7 +49,7 @@ namespace bonRegelClass
                                 //Console.WriteLine("{0}", fileregel);
                                 Console.ReadLine();
                             }
-                            Console.WriteLine("{0}", fileregel);
+                            Console.WriteLine("{0}", teksttest);
                         }
                         break;
                     case "x":
